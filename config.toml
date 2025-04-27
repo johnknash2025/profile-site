@@ -1,0 +1,36 @@
+baseURL = "https://johnknash2025.github.io/profile-site/"
+languageCode = "ja"
+defaultContentLanguage = "ja"
+title = "Engineering Notes"
+theme = "PaperMod"
+
+[params]
+  ShowShareButtons = false
+  ShowReadingTime = true
+  ShowBreadCrumbs = true
+  ShowPostNavLinks = true
+  ShowCodeCopyButtons = true
+  defaultTheme = "auto"
+  disableThemeToggle = false
+
+[languages]
+  [languages.ja]
+    languageName = "日本語"
+    weight = 1
+    contentDir = "content/ja"
+    title = "エンジニアリングノート"
+    menu = [
+      { name = "プロフィール", url = "/profile/", weight = 1 },
+      { name = "記事一覧", url = "/posts/", weight = 2 },
+      { name = "AI/エージェント技術", url = "/ai/", weight = 3 }
+    ]
+  [languages.en]
+    languageName = "English"
+    weight = 2
+    contentDir = "content/en"
+    title = "Engineering Notes"
+    menu = [
+      { name = "Profile", url = "/en/profile/", weight = 1 },
+      { name = "Posts", url = "/en/posts/", weight = 2 },
+      { name = "AI/Agent Tech", url = "/en/ai/", weight = 3 }
+    ]
