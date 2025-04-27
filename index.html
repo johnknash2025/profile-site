@@ -1,22 +1,39 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>自己紹介ページ</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>シンプルブログ</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>こんにちは！</h1>
-        <p>私は〇〇です。Web開発やAIに興味があります。</p>
-        <ul>
-            <li>経歴: サンプル経歴</li>
-            <li>趣味: プログラミング、音楽、読書</li>
-            <li>連絡先: sample@example.com</li>
-        </ul>
-        <button id="helloBtn">挨拶する</button>
-    </div>
-    <script src="script.js"></script>
+  <header>
+    <h1>シンプルブログ</h1>
+    <p class="subtitle">日々のちょっとした記録</p>
+  </header>
+  <main>
+    <section id="blog-list">
+      <!-- 記事リスト -->
+      <article class="blog-summary" data-id="1">
+        <h2>初めての記事</h2>
+        <time>2025-04-27</time>
+        <p>はじめまして。これからブログを書いていきます。</p>
+      </article>
+      <article class="blog-summary" data-id="2">
+        <h2>2つ目の記事</h2>
+        <time>2025-04-26</time>
+        <p>シンプルなブログデザインを目指しています。</p>
+      </article>
+    </section>
+    <section id="blog-detail">
+      <!-- 記事詳細がここに表示されます -->
+      <button id="back-btn">一覧に戻る</button>
+      <div id="detail-content"></div>
+    </section>
+  </main>
+  <footer>
+    <small>&copy; 2025 シンプルブログ</small>
+  </footer>
+  <script src="script.js"></script>
 </body>
 </html>
