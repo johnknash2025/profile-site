@@ -429,32 +429,101 @@ if ('serviceWorker' in navigator) {
     });
 }
 
-// Analytics tracking (replace with your analytics code)
+// Analytics tracking with Google Analytics 4
 function trackEvent(eventName, eventData = {}) {
-    // Example: Google Analytics 4
+    // Google Analytics 4 event tracking
     if (typeof gtag !== 'undefined') {
         gtag('event', eventName, eventData);
     }
     
-    // Example: Custom analytics
+    // Console log for debugging
     console.log('Event tracked:', eventName, eventData);
 }
 
-// Track button clicks
+// Track button clicks and interactions
 document.addEventListener('click', (e) => {
+    // Track CTA buttons
     if (e.target.matches('.btn-primary, .btn-secondary')) {
         trackEvent('button_click', {
             button_text: e.target.textContent.trim(),
             button_location: e.target.closest('section')?.id || 'unknown'
         });
     }
+    
+    // Track navigation clicks
+    if (e.target.matches('.nav-link')) {
+        trackEvent('navigation_click', {
+            nav_item: e.target.textContent.trim(),
+            target_section: e.target.getAttribute('href')
+        });
+    }
+    
+    // Track project link clicks
+    if (e.target.closest('a[href*="github.com"]')) {
+        trackEvent('project_click', {
+            project_name: 'Discord Farm Bot',
+            link_type: 'github'
+        });
+    }
+    
+    // Track social media clicks
+    if (e.target.closest('a[href*="x.com"], a[href*="twitter.com"]')) {
+        trackEvent('social_click', {
+            platform: 'twitter',
+            location: e.target.closest('footer') ? 'footer' : 'contact'
+        });
+    }
+    
+    if (e.target.closest('a[href*="github.com"]') && !e.target.closest('a[href*="discord-farmbot"]')) {
+        trackEvent('social_click', {
+            platform: 'github',
+            location: e.target.closest('footer') ? 'footer' : 'contact'
+        });
+    }
 });
 
-// Track form submissions
+// Track form submissions and interactions
 document.getElementById('contact-form').addEventListener('submit', () => {
     trackEvent('form_submit', {
         form_type: 'contact'
     });
+});
+
+// Track scroll depth
+let maxScrollDepth = 0;
+window.addEventListener('scroll', () => {
+    const scrollDepth = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    
+    if (scrollDepth > maxScrollDepth) {
+        maxScrollDepth = scrollDepth;
+        
+        // Track milestone scroll depths
+        if (scrollDepth >= 25 && maxScrollDepth < 25) {
+            trackEvent('scroll_depth', { depth: '25%' });
+        } else if (scrollDepth >= 50 && maxScrollDepth < 50) {
+            trackEvent('scroll_depth', { depth: '50%' });
+        } else if (scrollDepth >= 75 && maxScrollDepth < 75) {
+            trackEvent('scroll_depth', { depth: '75%' });
+        } else if (scrollDepth >= 90 && maxScrollDepth < 90) {
+            trackEvent('scroll_depth', { depth: '90%' });
+        }
+    }
+});
+
+// Track section views using Intersection Observer
+const sectionObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            trackEvent('section_view', {
+                section: entry.target.id || 'unknown'
+            });
+        }
+    });
+}, { threshold: 0.5 });
+
+// Observe all main sections
+document.querySelectorAll('section[id]').forEach(section => {
+    sectionObserver.observe(section);
 });
 
 // Error handling
