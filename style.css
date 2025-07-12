@@ -1,36 +1,431 @@
-body {
-    font-family: 'Segoe UI', 'ヒラギノ角ゴ ProN', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
-    background: #f7f7f7;
-    margin: 0;
-    padding: 0;
+/* Custom CSS for additional styling and animations */
+
+/* Smooth scrolling for all elements */
+* {
+    scroll-behavior: smooth;
 }
-.container {
-    max-width: 500px;
-    margin: 40px auto;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-    padding: 32px 24px;
-    text-align: center;
+
+/* Custom animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
-h1 {
-    color: #2c3e50;
+
+@keyframes fadeInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
-ul {
-    text-align: left;
-    margin: 16px 0 24px 0;
-    padding-left: 20px;
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
 }
-button {
-    background: #3498db;
-    color: #fff;
-    border: none;
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Hero section animations */
+.hero-content {
+    animation: fadeInUp 1s ease-out forwards;
+}
+
+.hero-content.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Navigation active link */
+.nav-link.active {
+    color: #3B82F6;
+    font-weight: 600;
+}
+
+/* Skill progress bars animation */
+.skill-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.skill-item.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.skill-item .bg-primary,
+.skill-item .bg-green-600,
+.skill-item .bg-purple-600 {
+    width: 0 !important;
+    transition: width 1.5s ease-out;
+}
+
+.skill-item.animate .bg-primary[style*="90%"] {
+    width: 90% !important;
+}
+
+.skill-item.animate .bg-primary[style*="85%"] {
+    width: 85% !important;
+}
+
+.skill-item.animate .bg-primary[style*="95%"] {
+    width: 95% !important;
+}
+
+.skill-item.animate .bg-green-600[style*="88%"] {
+    width: 88% !important;
+}
+
+.skill-item.animate .bg-green-600[style*="82%"] {
+    width: 82% !important;
+}
+
+.skill-item.animate .bg-green-600[style*="80%"] {
+    width: 80% !important;
+}
+
+.skill-item.animate .bg-purple-600[style*="85%"] {
+    width: 85% !important;
+}
+
+.skill-item.animate .bg-purple-600[style*="78%"] {
+    width: 78% !important;
+}
+
+.skill-item.animate .bg-purple-600[style*="92%"] {
+    width: 92% !important;
+}
+
+/* Stats counter animation */
+.stat-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.stat-card.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    transition: transform 0.3s ease;
+}
+
+/* Project cards animation */
+.project-card {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.project-card.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.project-card:hover {
+    transform: translateY(-10px);
+}
+
+/* About text animation */
+.about-text {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.8s ease-out;
+}
+
+.about-text.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.about-stats {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.8s ease-out;
+}
+
+.about-stats.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Contact form animation */
+.contact-info {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.8s ease-out;
+}
+
+.contact-info.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.contact-form {
+    opacity: 0;
+    transform: translateX(30px);
+    transition: all 0.8s ease-out;
+}
+
+.contact-form.animate {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Back to top button */
+#back-to-top {
+    transition: all 0.3s ease;
+}
+
+#back-to-top.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #3B82F6;
     border-radius: 4px;
-    padding: 10px 24px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: background 0.2s;
 }
-button:hover {
-    background: #217dbb;
+
+::-webkit-scrollbar-thumb:hover {
+    background: #2563EB;
+}
+
+/* Loading animation for images */
+img {
+    transition: opacity 0.3s ease;
+}
+
+img:not([src]) {
+    opacity: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero-content p {
+        font-size: 1.125rem;
+    }
+    
+    .skill-category {
+        margin-bottom: 2rem;
+    }
+}
+
+/* Dark mode support (optional) */
+@media (prefers-color-scheme: dark) {
+    /* Add dark mode styles if needed */
+}
+
+/* Print styles */
+@media print {
+    .fixed,
+    #back-to-top,
+    nav {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+    }
+    
+    .bg-gradient-to-br {
+        background: white !important;
+    }
+}
+
+/* Focus styles for accessibility */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+    outline: 2px solid #3B82F6;
+    outline-offset: 2px;
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .text-gray-600 {
+        color: #000 !important;
+    }
+    
+    .border-gray-200 {
+        border-color: #000 !important;
+    }
+}
+
+/* Custom utilities */
+.text-shadow {
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.backdrop-blur-custom {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* Gradient text */
+.gradient-text {
+    background: linear-gradient(135deg, #3B82F6, #8B5CF6);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Floating animation for profile image */
+.hero-content img {
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Skill category hover effects */
+.skill-category:hover {
+    transform: translateY(-5px);
+}
+
+/* Button hover effects */
+.btn-primary:hover {
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+}
+
+.btn-secondary:hover {
+    box-shadow: 0 10px 25px rgba(59, 130, 246, 0.2);
+}
+
+/* Section reveal animation */
+.section-reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.section-reveal.animate {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile menu animation */
+#mobile-menu {
+    transition: all 0.3s ease;
+    max-height: 0;
+    overflow: hidden;
+}
+
+#mobile-menu.show {
+    max-height: 300px;
+}
+
+/* Form input focus effects */
+input:focus,
+textarea:focus {
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Loading spinner for form submission */
+.loading-spinner {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    border: 3px solid #ffffff;
+    border-radius: 50%;
+    border-top-color: transparent;
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Success message styling */
+.success-message {
+    background: linear-gradient(135deg, #10B981, #059669);
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.success-message.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Error message styling */
+.error-message {
+    background: linear-gradient(135deg, #EF4444, #DC2626);
+    color: white;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+}
+
+.error-message.show {
+    opacity: 1;
+    transform: translateY(0);
 }
